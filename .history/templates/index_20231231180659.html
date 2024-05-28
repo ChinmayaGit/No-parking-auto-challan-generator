@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Upload</title>
+    <style>
+      body {
+        background: linear-gradient(
+          135deg,
+          #3498db,
+          #2ecc71
+        ); /* Gradient from blue to green */
+        color: #0e1c01; /* White text */
+        font-family: "Arial", sans-serif;
+        text-align: center;
+        padding: 5vw; /* 5% of the viewport width for padding */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      h1 {
+        margin-bottom: 3vh; /* 3% of the viewport height for margin */
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%; /* Full width for the form */
+      }
+
+      input[type="file"] {
+        margin: 2vh 0; /* 2% of the viewport height for margin */
+        padding: 2vh;
+        border: none;
+        background-color: #ecf0f1; /* Light gray background */
+        border-radius: 5px;
+        width: 80%; /* 80% of the width for the file input */
+        outline: none;
+      }
+
+      input[type="submit"] {
+        margin-top: 4vh; /* 4% of the viewport height for margin */
+        padding: 2vh 4vw; /* 2% of the viewport height for vertical padding and 4% of the viewport width for horizontal padding */
+        border: none;
+        background-color: #3498db; /* Blue button color */
+        color: #100101;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        outline: none;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #2980b9; /* Darker blue on hover */
+      }
+
+      .download-link {
+        margin-top: 4vh; /* 4% of the viewport height for margin */
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Video Upload</h1>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" accept="video/*" />
+      <input type="submit" value="Upload" />
+    </form>
+
+    {% if filename %}
+    <div class="download-link">
+      <a href="{{ url_for('download_result') }}" download
+        >Download The extracted number plates</a
+      >
+    </div>
+    {% endif %}
+  </body>
+</html>
